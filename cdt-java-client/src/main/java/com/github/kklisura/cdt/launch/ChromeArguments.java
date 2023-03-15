@@ -4,7 +4,7 @@ package com.github.kklisura.cdt.launch;
  * #%L
  * cdt-java-client
  * %%
- * Copyright (C) 2018 - 2021 Kenan Klisura
+ * Copyright (C) 2018 - 2023 Kenan Klisura
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -97,6 +97,9 @@ public class ChromeArguments {
 
   @ChromeArgument("enable-logging")
   private String enableLogging;
+
+  @ChromeArgument("remote-allow-origins")
+  private String remoteAllowOrigins;
 
   private Map<String, Object> additionalArguments;
 
@@ -311,6 +314,10 @@ public class ChromeArguments {
     return enableLogging;
   }
 
+  public String getRemoteAllowOrigins() {
+    return remoteAllowOrigins;
+  }
+
   /**
    * Builder builder.
    *
@@ -343,7 +350,8 @@ public class ChromeArguments {
             .disableSync()
             .disableTranslate()
             .metricsRecordingOnly()
-            .safebrowsingDisableAutoUpdate();
+            .safebrowsingDisableAutoUpdate()
+            .remoteAllowOrigins("*");
 
     if (headless) {
       builder.headless().disableGpu().hideScrollbars().muteAudio();
@@ -787,6 +795,11 @@ public class ChromeArguments {
      */
     public Builder safebrowsingDisableAutoUpdate() {
       return safebrowsingDisableAutoUpdate(Boolean.TRUE);
+    }
+
+    public Builder remoteAllowOrigins(String origins) {
+      arguments.remoteAllowOrigins = origins;
+      return this;
     }
 
     /**
