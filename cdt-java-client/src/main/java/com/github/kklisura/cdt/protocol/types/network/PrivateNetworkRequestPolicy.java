@@ -28,5 +28,7 @@ public enum PrivateNetworkRequestPolicy {
   @JsonProperty("BlockFromInsecureToMorePrivate")
   BLOCK_FROM_INSECURE_TO_MORE_PRIVATE,
   @JsonProperty("WarnFromInsecureToMorePrivate")
-  WARN_FROM_INSECURE_TO_MORE_PRIVATE
+  WARN_FROM_INSECURE_TO_MORE_PRIVATE,
+  @JsonProperty("PreflightWarn")
+  PREFLIGHT_WARN,
 }
